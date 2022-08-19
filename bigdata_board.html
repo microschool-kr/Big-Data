@@ -149,7 +149,11 @@ const illuminationDigitalChart = new Chart(illuminationDigitalCtx, {
     options: {
         scales: {
             y: {
-                beginAtZero: true
+                max:1,
+                min:0,
+                ticks:{
+                  stepSize: 1
+                }
             }
         }
     }
@@ -195,11 +199,15 @@ const vibrationChart = new Chart(vibrationCtx, {
         }]
     },
     options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+      scales: {
+        y: {
+          max:1,
+          min:0,
+          ticks:{
+            stepSize: 1
+          }
         }
+      }
     }
 });
 
