@@ -272,7 +272,7 @@ const groundChart = new Chart(groundCtx, {
     showPortModal();
   }
 
-var first = true;
+var cnt = -1;
 
 async function getBigdata() {
   const port = await navigator.serial.requestPort();
@@ -294,21 +294,20 @@ async function getBigdata() {
       line += String.fromCharCode(...value);
       var l = line.split("\r\n");
       if (l[1] || l[1] == ''){
-        if (first) {
-          first = false;
-        }
-        else {
+        if (cnt < 1) {
+        } else {
           var time = new Date().toLocaleTimeString();
-          d = l[0].split(", ");
-          var row = `<tr><td>${d[0]}</td>`;
-          for (let i = 1; i < 7; i++) {
-            row += `<td>${d[i]}</td>`;
-            addData(charts[i - 1], time, d[i]);
+          d = l[0].split(",");
+          var row = `<tr><td>${cnt}</td>`;
+          for (let i = 2; i < 8; i++) {
+            row += `<td>${d[i].trim()}</td>`;
+            addData(charts[i - 2], time, d[i]);
           }
           row += `</tr>`;
           tbody.innerHTML += row;
         }
         line = l[1];
+        cnt++;
       }
       // Do something with |value|...
     }
