@@ -3,3 +3,9 @@ body,
 center {
   height: 100%
 }
+
+.save-button {
+  position: absolute !important;
+  top: 1%;
+  right: 1%;
+}
