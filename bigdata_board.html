@@ -326,8 +326,9 @@ async function getBigdata() {
           d = l[0].split(",");
           var row = `<tr><td>${cnt}</td>`;
           for (let i = 2; i < 8; i++) {
-            row += `<td>${d[i].trim()}</td>`;
-            addData(charts[i - 2], time, d[i]);
+            var v = d[i].trim();
+            row += `<td>${v}</td>`;
+            addData(charts[i - 2], time, v);
           }
           row += `</tr>`;
           tbody.innerHTML += row;
