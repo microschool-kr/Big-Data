@@ -200,6 +200,15 @@ const illuminationDigitalChart = new Chart(illuminationDigitalCtx, {
                   stepSize: 1
                 }
             }
+        },
+        plugins:{
+          legend:{
+            labels:{
+              font:{
+                size: 20
+              }
+            }
+          }
         }
     }
 });
@@ -224,6 +233,15 @@ const dustChart = new Chart(dustCtx, {
             y: {
                 beginAtZero: true
             }
+        },
+        plugins:{
+          legend:{
+            labels:{
+              font:{
+                size: 20
+              }
+            }
+          }
         }
     }
 });
@@ -252,7 +270,16 @@ const vibrationChart = new Chart(vibrationCtx, {
             stepSize: 1
           }
         }
-      }
+      },
+      plugins:{
+          legend:{
+            labels:{
+              font:{
+                size: 20
+              }
+            }
+          }
+        }
     }
 });
 
@@ -277,6 +304,15 @@ const groundChart = new Chart(groundCtx, {
                 min: 900,
                 max: 1023
             }
+        },
+        plugins:{
+          legend:{
+            labels:{
+              font:{
+                size: 20
+              }
+            }
+          }
         }
     }
 });
