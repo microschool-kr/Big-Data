@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>빅 데이터 - 마이크로스쿨</title>
   <link rel="shortcut icon" href="./assets/favicon.ico">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.2/dist/chart.min.js" integrity="sha256-srZ7wC4CLlY0F9UFji68dTwYJQ5o93Quq2+iyQ4gH/I=" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link rel="stylesheet" href="./assets/index.css" />
 </head>
 <body>
@@ -36,7 +36,10 @@
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <button id="distance" value="0" class="save-button btn btn-outline-primary bg-gradient">저장</button>
+          <div class="btn-group btn-group-sm group-button">
+            <button value="0" class="zoom-button btn btn-sm btn-outline-primary bg-gradient">크게 보기</button>
+            <button id="distance" value="0" class="save-button btn btn-sm btn-outline-primary bg-gradient">저장</button>
+          </div>
           <canvas id="distanceChart" width="400" height="400"></canvas>
         </div>
       </div>
@@ -44,7 +47,10 @@
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <button id="illuminationAnalog" value="1" class="save-button btn btn-outline-primary bg-gradient">저장</button>
+          <div class="btn-group group-button">
+            <button value="1" class="zoom-button btn btn-sm btn-outline-primary bg-gradient">크게 보기</button>
+            <button id="illuminationAnalog" value="1" class="save-button btn-sm btn btn-outline-primary bg-gradient">저장</button>
+          </div>
           <canvas id="illuminationAnalogChart" width="400" height="400"></canvas>
         </div>
       </div>
@@ -52,7 +58,10 @@
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <button id="illuminationDigital" value="2" class="save-button btn btn-outline-primary bg-gradient">저장</button>
+          <div class="btn-group group-button">
+            <button value="2" class="zoom-button btn btn-sm btn-outline-primary bg-gradient">크게 보기</button>
+            <button id="illuminationDigital" value="2" class="save-button btn-sm btn btn-outline-primary bg-gradient">저장</button>
+          </div>
           <canvas id="illuminationDigitalChart" width="400" height="400"></canvas>
         </div>
       </div>
@@ -62,7 +71,10 @@
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <button id="dust" value="3" class="save-button btn btn-outline-primary bg-gradient">저장</button>
+          <div class="btn-group group-button">
+            <button value="3" class="zoom-button btn btn-sm btn-outline-primary bg-gradient">크게 보기</button>
+            <button id="dust" value="3" class="save-button btn btn-sm btn-outline-primary bg-gradient">저장</button>
+          </div>
           <canvas id="dustChart" width="400" height="400"></canvas>
         </div>
       </div>  
@@ -70,7 +82,10 @@
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <button id="vibration" value="4" class="save-button btn btn-outline-primary bg-gradient">저장</button>
+          <div class="btn-group group-button">
+            <button value="3" class="zoom-button btn btn-sm btn-outline-primary bg-gradient">크게 보기</button>
+            <button id="vibration" value="4" class="save-button btn-sm btn btn-outline-primary bg-gradient">저장</button>
+          </div>
           <canvas id="vibrationChart" width="400" height="400"></canvas>
         </div>
       </div>
@@ -78,7 +93,10 @@
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <button id="ground" value="5" class="save-button btn btn-outline-primary bg-gradient">저장</button>
+          <div class="btn-group group-button">
+            <button value="5" class="zoom-button btn btn-sm btn-outline-primary bg-gradient">크게 보기</button>
+            <button id="ground" value="5" class="save-button btn-sm btn btn-outline-primary bg-gradient">저장</button>
+          </div>
           <canvas id="groundChart" width="400" height="400"></canvas>
         </div>
       </div>
@@ -88,6 +106,8 @@
 <script>
   var portModalEl = null;
   var portModal = null;
+  var chartModalEl = null;
+  var chartModal = null;
 
   const tbody = document.getElementById("tbody");
   const distanceCtx = document.getElementById('distanceChart').getContext('2d');
@@ -110,6 +130,15 @@
             y: {
                 beginAtZero: true
             }
+        },
+        plugins:{
+          legend:{
+            labels:{
+              font:{
+                size: 20
+              }
+            }
+          }
         }
     },
   });
@@ -134,6 +163,15 @@
             y: {
                 beginAtZero: true
             }
+          },
+                  plugins:{
+          legend:{
+            labels:{
+              font:{
+                size: 20
+              }
+            }
+          }
         }
     }
   });
@@ -251,39 +289,100 @@ const groundChart = new Chart(groundCtx, {
       chart.update();
   }
 
-const buttons = document.querySelectorAll('.save-button');
-for (var i = 0; i < 6; i++) {
-  buttons[i].addEventListener('click', (ev) => {
+const downloadChart = (ev) => {
     var a = document.createElement("a");
     var url = charts[ev.target.value].toBase64Image();
     a.href = url;
     a.download = `${ev.target.id}.png`;
     a.click();
-  });
+  }
+  
+  var modalChart = null;
+  var modalChartIdx = null;
+  
+  const downloadModalChart = () => {
+    if (modalChart != null) {
+    var a = document.createElement("a");
+    var url = modalChart.toBase64Image();
+    a.href = url;
+    a.download = `image.png`;
+    a.click();
+  } else {
+    alert("오류입니다!");
+  }
 }
 
-    const showPortModal = () => {
-        if (portModalEl !== null) {
-            portModalEl.remove();
-        }
-        portModalEl = document.createElement('div');
-        portModalEl.setAttribute("id", "portModalEl");
-        portModalEl.innerHTML = `<div class="modal fade" id="portModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-                                    <div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content">
-                                        <div class="modal-body">
-                                        <h1 class="modal-title">시리얼 포트 연결</h1>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button onclick="getBigdata();" class="btn btn-lg btn-primary bg-gradient">연결하기</button>
-                                        </div>
-                                        </div>
-                                        </div>`;
+  const saveButtons = document.querySelectorAll('.save-button');
+for (var i = 0; i < 6; i++) {
+  saveButtons[i].addEventListener('click', downloadChart);
+}
 
-        document.body.append(portModalEl);
+const closeChartModal = () => {
+  modalChart.destroy();
+  chartModal.hide();
+  chartModalEl.remove();
+  modalChart = null;
+  chartModal = null;
+  chartModalEl = null;
+  modalChartIdx = null;
+}
 
-        portModal = new bootstrap.Modal(portModalEl.querySelector('.modal'));
-        portModal.show();
+const showChartModal = (ev) => {
+    if (chartModalEl !== null) {
+      chartModalEl.remove();
     }
+    chartModalEl = document.createElement('div');
+    chartModalEl.setAttribute("id", "chartModalEl");
+    chartModalEl.innerHTML = `<div class="modal fade" id="portModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+                                  <div class="modal-dialog modal-xl modal-dialog-centered"><div class="modal-content">
+                                      <div class="modal-body">
+                                        <canvas id="modal-chart"></canvas>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button onclick="downloadModalChart();" class="btn btn-lg btn-primary bg-gradient">저장</button>
+                                        <button onclick="closeChartModal();" class="btn btn-lg btn-secondary bg-gradient">닫기</button>
+                                      </div>
+                                      </div>
+                                      </div>`;
+    document.body.append(chartModalEl);
+    
+    var modalCtx = document.getElementById("modal-chart").getContext("2d");
+    
+    modalChartIdx = ev.target.value;
+    modalChart = new Chart(modalCtx, charts[ev.target.value].config._config);
+
+    chartModal = new bootstrap.Modal(chartModalEl.querySelector('.modal'));
+    chartModal.show();
+  }
+  
+
+  const zoomButtons = document.querySelectorAll('.zoom-button');
+    for (var i = 0; i < 6; i++) {
+  zoomButtons[i].addEventListener('click', showChartModal);
+  }
+
+  const showPortModal = () => {
+      if (portModalEl !== null) {
+          portModalEl.remove();
+      }
+      portModalEl = document.createElement('div');
+      portModalEl.setAttribute("id", "portModalEl");
+      portModalEl.innerHTML = `<div class="modal fade" id="portModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+                                  <div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content">
+                                      <div class="modal-body">
+                                      <h1 class="modal-title">시리얼 포트 연결</h1>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button onclick="getBigdata();" class="btn btn-lg btn-primary bg-gradient">연결하기</button>
+                                      </div>
+                                      </div>
+                                      </div>`;
+
+      document.body.append(portModalEl);
+
+      portModal = new bootstrap.Modal(portModalEl.querySelector('.modal'));
+      portModal.show();
+  }
     
   let lineBuffer = '';
   let latestValue = 0;
@@ -332,6 +431,9 @@ async function getBigdata() {
           }
           row += `</tr>`;
           tbody.innerHTML += row;
+          if (modalChart != null) {
+            addData(modalChart, time, d[modalChartIdx].trim());
+          }
         }
         line = l[1];
         cnt++;

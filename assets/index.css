@@ -4,8 +4,14 @@ center {
   height: 100%
 }
 
-.save-button {
+.group-button {
   position: absolute !important;
-  top: 1%;
-  right: 1%;
+  top: 2%;
+  right: 2%;
+}
+
+.zoom-button,
+.save-button {
+  font-size: 0.6rem !important;
+  padding: 0.25rem !important;
 }
